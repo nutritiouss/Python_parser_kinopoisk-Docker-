@@ -1,8 +1,10 @@
 # Кинопоиск ТОП-250 сериалов гистограмма
 
-Необходимый  предоставить программу на python которая будет парсить список
+Написана программа на python которая будет парсить список
 сериалов https://www.kinopoisk.ru/lists/series-top250/ и выдавать необходимый анализ.
-Перед 
+
+Доступ к гистрограмме предоставлен 2 способами. Jupyter-notebook ``histogram_genre.ipynb`` и посредством запуска контейнера, в котором висит web сервис на проту http://127.0.0.1:8050/
+
 
 
 ## Загрузка
@@ -31,17 +33,17 @@
 
     ```shell
     docker build -t top_250 .
-    docker run -d -p 8050:8050 --rm -v "$PWD/config.ini:/usr/project/config.ini" -v "$PWD/data/:/usr/project/data/" --name top_250_run top_250
+    docker run -d -p 8050:8050 --rm  --network='host' -v "$PWD/config.ini:/usr/project/config.ini" -v "$PWD/data/:/usr/project/data/" --name top_250_run top_250
     ```
 
   ##  Парсинг Кинопоиска (ТОП-250 сериалов)
   В репозитории уже лежат дампы с собраными данными. Для успешного парсинга необходим API  ключ от прокси zyte. Так же можно легко адапатировать код под другой прокси.
 
     ```shell
-    rm -r data/*
+    rm data/*
     docker exec -it top_250_run bash
-    cd /usr/project/  
     python main.py
+    exit
     ```
 
     reading logs:
