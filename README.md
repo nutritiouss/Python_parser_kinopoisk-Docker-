@@ -33,17 +33,17 @@
 
     ```shell
     docker build -t top_250 .
-    docker run -d -p 8050:8050 --rm -v "$PWD/config.ini:/usr/project/config.ini" -v "$PWD/data/:/usr/project/data/" --name top_250_run top_250
+    docker run -d -p 8050:8050 --rm  --network='host' -v "$PWD/config.ini:/usr/project/config.ini" -v "$PWD/data/:/usr/project/data/" --name top_250_run top_250
     ```
 
   ##  Парсинг Кинопоиска (ТОП-250 сериалов)
   В репозитории уже лежат дампы с собраными данными. Для успешного парсинга необходим API  ключ от прокси zyte. Так же можно легко адапатировать код под другой прокси.
 
     ```shell
-    rm -r data/*
+    rm data/*
     docker exec -it top_250_run bash
-    cd /usr/project/  
     python main.py
+    exit
     ```
 
     reading logs:
