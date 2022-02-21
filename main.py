@@ -13,7 +13,7 @@ logging.basicConfig(
 )
 
 config = ConfigParser()
-config.read(f'{os.path.dirname(__file__)}/config.ini')
+config.read(f'{os.path.dirname(__file__)}/config/config.ini')
 X_API = config["main_param"]["X_API"]
 
 logger.info(f"loading X-API key")
