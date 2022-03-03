@@ -20,7 +20,7 @@
   copy template config:
 
     ```shell
-    cp ./config_template.ini ./config.ini
+    cp ./config/config_template.ini ./config/config.ini
     ```
 
   fill template config:
